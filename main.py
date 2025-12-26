@@ -1,4 +1,5 @@
-from flask import Flask,render_template
+from flask import Flask, render_template, request, redirect, url_for
+from datetime import datetime
 
 news_items = {
     1: {'id': 1, 
@@ -13,9 +14,15 @@ news_items = {
 }
 
 name = "slowwy"
-time = "now"
+time = datetime.now()
 
-
+def new_news_item(title, body):
+    new_id = max(news_items.keys()) + 1
+    return {
+        'id': new_id,
+        'title': title,
+        'body': body
+}
 
 app = Flask(__name__)
 
@@ -31,3 +38,13 @@ def show_news_item(id):
                            id=news_item['id'],
                            title=news_item['title'],
                            body=news_item['body'])
+
+
+@app.route('/news/create/',methods = ["POST"])
+def create_news_item():
+    title = request.form["title"]
+    body = request.form["body"]
+    print(f"Your tile: {title}, body: {body}")
+    new_item = new_news_item(title,body)
+    news_items[new_item["id"]] = new_item
+    return redirect(url_for('index'))
