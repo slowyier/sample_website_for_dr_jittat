@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for,render_template_string
 from datetime import datetime
 
 news_items = {
@@ -34,7 +34,9 @@ def index():
 @app.route('/news/<id>/')
 def show_news_item(id):
     news_item = news_items[int(id)]
-    return render_template('news_item.html',
+    query = request.args.get('query', default="", type=str)
+    temp = open("/home/vali/ku_web_jittat/templates/index.html", "r").read()
+    return render_template_string(temp.replace("{query}",query),
                            id=news_item['id'],
                            title=news_item['title'],
                            body=news_item['body'])
