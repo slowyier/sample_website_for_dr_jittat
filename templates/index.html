@@ -3,4 +3,9 @@
     <h1>Hello!!</h1>
     Hi
   </body>
+   <ul>
+      {% for item in news_items %}
+        <li>{{item.id}}: {{ item.title }}</li>
+      {% endfor %}
+    </ul>
 </html>
