@@ -1,17 +1,38 @@
 <html>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
   <body>
-    <h1>query: {query}</h1>
-    <h1>Hello!! {{ name }}</h1>
+    <h1 class="title">Hello!! {{ name }}</h1>
     Hi. This is {{ time }}.  This is recent news.
-    <ul>
+    <ul id="main_news_list">
       {% for item in news_items %}
-        <li>
+        <li class="news-items" id="news_item_{{ item.id }}">
           <a href="{{ url_for('show_news_item', id=item.id) }}">{{ item.title }}</a>
         </li>
       {% endfor %}
+    </ul> 
+
+    This is the first dummy list
+    <ul>
+      <li class="news-items">
+        <span class="highlight2">Somying</span> is the first year student.
+      </li>
+      <li class="news-items">
+        Somchai is the second year student
+      </li>
+      <li class="news-items">Sommai</li>
+      <li class="news-items">Somjai</li>
     </ul>
-    
-    <form action="{{ url_for('create_news_item') }}", method="post">
+
+    This is the <span class="highlight">second dummy list</span>:
+    <ul>
+      <li>breakfast</li>
+      <li id="lunch_item">lunch</li>
+      <li>dinner</li>
+    </ul>
+
+    <form action="{{ url_for('create_news_item') }}" method="POST">
       Title: <input name="title"/><br />
       Body: <textarea name="body"></textarea><br />
       <input type="submit" value="Save"/>

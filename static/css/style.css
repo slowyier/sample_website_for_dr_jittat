@@ -1,0 +1,34 @@
+.news-items {
+  margin: 10px 0;
+}
+
+#main_news_list .news-items {
+  border: 1px solid gray;
+  padding: 5px;
+}
+
+.highlight {
+  color: red;
+}
+
+.title {
+    background-color: gray;
+    padding: 10px;
+}
+
+#news_item_2 {
+    background-color: green;
+    
+}
+
+
+#news_item_2 a{
+    color: #ffffff;
+    font-size: 40px;
+}
+
+.highlight2 {
+    color: red;
+    background-color: yellow;
+    font-size: 40px;
+}
